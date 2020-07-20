@@ -1,0 +1,46 @@
+#指定默认端口为8080
+server:
+  port: 8080
+
+#指定默认启动环境为dev
+spring:
+  application:
+    name: IDGeneratorServer
+  profiles:
+    active: dev
+  datasource:
+    # 默认数据源
+    default:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.166.63:3306/seqid?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: admin
+    # 多数据源
+    multiseq1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.166.63:3306/multiseq1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: admin
+    multiseq2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.166.63:3306/multiseq2?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+      username: root
+      password: admin
+  jpa:
+    show-sql: true
+  redis:
+    host: 192.168.166.63
+    port: 6379
+    database: 0
+    password: push
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1
+        max-idle: 8
+        min-idle: 0
+
+
+  #将Date类型在接口返回值中转为该格式的String
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
